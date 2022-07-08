@@ -23,7 +23,7 @@ window.function = function (time, fweight, align, fsize, width, height) {
 <p id="pre"></p>
 <button id="btn" onclick="playBuffer()">Play Buffer!</button>
 </div>
-<audio controls id = "audio" src = https://www.fesliyanstudios.com/play-mp3/4385" />
+<audio controls id = "audio" src = "https://www.fesliyanstudios.com/play-mp3/4385" />
 <style>
 
 .container {
@@ -82,7 +82,7 @@ fetch(url)
     sourceBuffer = ctx.createBufferSource();
     sourceBuffer.buffer = audioBuffer;
     sourceBuffer.connect(ctx.destination);
-    document.getElementById("play-buffer").disabled = false;
+    document.getElementById("btn").disabled = false;
   });
 
 function playBuffer() {
