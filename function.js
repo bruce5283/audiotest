@@ -21,10 +21,10 @@ window.function = function (time, fweight, align, fsize, width, height) {
    <!-- Display the countdown timer in an element -->
 <div class = "container">
 <p id="pre"></p>
-<button id = "tn">Element</button>
-<button id="btn">Buffer</button><br>
+<button onclick="playElement()">Play Element!</button>
+<button id="btn" disabled onclick="playBuffer()">Play Buffer!</button>
 </div>
-<audio controls id = "audio" src = "https://www.fesliyanstudios.com/play-mp3/4385" />
+<audio controls id = "audio" src = "https://mdn.github.io/webaudio-examples/media-source-buffer/viper.mp3" />
 <style>
 
 .container {
@@ -77,34 +77,28 @@ let sourceBuffer;
 const ctx = new AudioContext();
 
 fetch(url)
-    .then(response => response.arrayBuffer())
-    .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
-    .then(audioBuffer => {
-        sourceBuffer = ctx.createBufferSource();
-        sourceBuffer.buffer = audioBuffer;
-        sourceBuffer.connect(ctx.destination);
-        document.getElementbyID("btn").disabled = false;
-    });
-    
-function playElement(){
-    mediaElement.addEventListener('play', () => {
-        const sourceElement = ctx.createMediaElementSource(mediaElement);
-        sourceElement.connect(ctx.destination);
-    });
-    mediaElement.play();
-}
-    
-function playBuffer(){
-    sourceBuffer.start();
+  .then(response => response.arrayBuffer())
+  .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
+  .then(audioBuffer => {
+    sourceBuffer = ctx.createBufferSource();
+    sourceBuffer.buffer = audioBuffer;
+    sourceBuffer.connect(ctx.destination);
+    document.getElementById("play-buffer").disabled = false;
+  });
+
+function playElement() {
+  // To be honest, I have no idea, why this has to be in an event listener
+  // Also, seems to have to be right before the play call for some reason
+  // Does not make sense to me, I hope it's a quirk of the snippet environment
+  mediaElement.addEventListener('play', () => {
+    const sourceElement = ctx.createMediaElementSource(mediaElement);
+    sourceElement.connect(ctx.destination);
+  });
+  mediaElement.play();
 }
 
-tn.onclick = e => {
-    playElement();
-}
-
-btn.onclick = e => {
-    document.getElementById("pre").innerHTML = "CLICKED";
-    playBuffer();
+function playBuffer() {
+  sourceBuffer.start();
 }
 
 </script>
