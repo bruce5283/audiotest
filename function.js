@@ -21,7 +21,8 @@ window.function = function (time, fweight, align, fsize, width, height) {
    <!-- Display the countdown timer in an element -->
 <div class = "container">
 <p id="pre"></p>
-<button id="btn">Start Timer</button><br>
+<button id = "tn">Element</button>
+<button id="btn">Buffer</button><br>
 </div>
 <audio controls id = "audio" src = "https://www.fesliyanstudios.com/play-mp3/4385" />
 <style>
@@ -72,9 +73,13 @@ const mediaElement = document.getElementById("audio");
 const url = mediaElement.src;
 let sourceBuffer;
 
+tn.onclick = e => {
+    playElement();
+}
+
 btn.onclick = e => {
     document.getElementById("pre").innerHTML = "CLICKED";
-    playElement();
+    playBuffer();
 }
 
 const ctx = new AudioContext();
