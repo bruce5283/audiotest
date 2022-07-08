@@ -22,7 +22,7 @@ window.function = function (time, fweight, align, fsize, width, height) {
 <div class = "container">
 <p id="pre"></p>
 <button onclick="playElement()">Play Element!</button>
-<button id="btn" disabled onclick="playBuffer()">Play Buffer!</button>
+<button id="btn" onclick="playBuffer()">Play Buffer!</button>
 </div>
 <audio controls id = "audio" src = "https://mdn.github.io/webaudio-examples/media-source-buffer/viper.mp3" />
 <style>
