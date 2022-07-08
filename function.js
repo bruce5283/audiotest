@@ -73,6 +73,7 @@ const url = mediaElement.src;
 let sourceBuffer;
 
 btn.onclick = e => {
+    document.getElementById("pre").innerHTML = "CLICKED";
     playBuffer();
 }
 
