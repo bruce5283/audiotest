@@ -23,7 +23,7 @@ window.function = function (time, fweight, align, fsize, width, height) {
 <p id="pre"></p>
 <button id="btn" onclick="playBuffer()">Play Buffer!</button>
 </div>
-<audio controls id = "audio" src = "https://www.fesliyanstudios.com/play-mp3/4385" />
+<audio controls id = "audio" src = "https://mdn.github.io/webaudio-examples/media-source-buffer/viper.mp3" />
 <style>
 
 .container {
