@@ -85,6 +85,17 @@ fetch(url)
     document.getElementById("btn").disabled = false;
   });
 
+function playElement() {
+  // To be honest, I have no idea, why this has to be in an event listener
+  // Also, seems to have to be right before the play call for some reason
+  // Does not make sense to me, I hope it's a quirk of the snippet environment
+  mediaElement.addEventListener('play', () => {
+    const sourceElement = ctx.createMediaElementSource(mediaElement);
+    sourceElement.connect(ctx.destination);
+  });
+  mediaElement.play();
+}
+
 function playBuffer() {
   sourceBuffer.start();
 }
