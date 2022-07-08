@@ -21,8 +21,9 @@ window.function = function (time, fweight, align, fsize, width, height) {
    <!-- Display the countdown timer in an element -->
 <div class = "container">
 <p id="pre"></p>
-<button id="btn">Start Timer</button><br>
+<button id="btn" disabled onclick = "playBuffer()">Start Timer</button><br>
 </div>
+<audio controls id = "audio" src = "https://www.fesliyanstudios.com/play-mp3/4385" />
 <style>
 
 .container {
@@ -67,32 +68,27 @@ color: #12A89E;
 </style>
 <script>
 // Set the date we're counting down to
-const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/4385");
-let time = ${time};
+const mediaElement = document.getElementById("audio");
+const url = mediaElement.src;
+let sourceBuffer;
 
-btn.onclick = e => {
-  // mark our audio element as approved by the user
-  audio.load();
-  countdown();
-  btn.disabled = true;
-};
+const ctx = new AudioContext();
 
-
-function countdown() {
-  document.getElementById("pre").style.color ="#12A89E";
-  document.getElementById("pre").innerHTML = --time + "s work time";
-  if(time === 0) return onend();
-  setTimeout(countdown, 1000);
+fetch(url)
+    .then(response => response.arrayBuffer())
+    .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
+    .then(audioBuffer => {
+        sourceBuffer = ctx.createBufferSource();
+        sourceBuffer.buffer = audioBuffer;
+        sourceBuffer.connect(ctx.destination);
+        document.getElementbyID("btn").disabled = false;
+    });
+    
+function playBuffer(){
+    sourceBuffer.start();
 }
 
-
-function onend() {
-  audio.play(); // now we're safe to play it
-  document.getElementById("pre").style.color ="#A81248";
-  document.getElementById("pre").innerHTML = "NEXT MOVEMENT";
-  time = ${time}
-  btn.disabled = false;
-}</script>
+</script>
   </body>
 </html>`
 
