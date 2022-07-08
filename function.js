@@ -73,14 +73,6 @@ const mediaElement = document.getElementById("audio");
 const url = mediaElement.src;
 let sourceBuffer;
 
-tn.onclick = e => {
-    playElement();
-}
-
-btn.onclick = e => {
-    document.getElementById("pre").innerHTML = "CLICKED";
-    playBuffer();
-}
 
 const ctx = new AudioContext();
 
@@ -104,6 +96,15 @@ function playElement(){
     
 function playBuffer(){
     sourceBuffer.start();
+}
+
+tn.onclick = e => {
+    playElement();
+}
+
+btn.onclick = e => {
+    playBuffer();
+    document.getElementById("pre").innerHTML = "CLICKED";
 }
 
 </script>
