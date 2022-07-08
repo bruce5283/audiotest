@@ -21,7 +21,7 @@ window.function = function (time, fweight, align, fsize, width, height) {
    <!-- Display the countdown timer in an element -->
 <div class = "container">
 <p id="pre"></p>
-<button id="btn" disabled onclick = "playBuffer()">Start Timer</button><br>
+<button id="btn" onclick = "playBuffer()">Start Timer</button><br>
 </div>
 <audio controls id = "audio" src = "https://www.fesliyanstudios.com/play-mp3/4385" />
 <style>
