@@ -103,8 +103,8 @@ tn.onclick = e => {
 }
 
 btn.onclick = e => {
-    playBuffer();
     document.getElementById("pre").innerHTML = "CLICKED";
+    playBuffer();
 }
 
 </script>
