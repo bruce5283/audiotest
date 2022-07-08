@@ -74,7 +74,7 @@ let sourceBuffer;
 
 btn.onclick = e => {
     document.getElementById("pre").innerHTML = "CLICKED";
-    playBuffer();
+    playElement();
 }
 
 const ctx = new AudioContext();
@@ -88,6 +88,14 @@ fetch(url)
         sourceBuffer.connect(ctx.destination);
         document.getElementbyID("btn").disabled = false;
     });
+    
+function playElement(){
+    mediaElement.addEventListener('play', () => {
+        const sourceElement = ctx.createMediaElementSource(mediaElement);
+        sourceElement.connect(ctx.destination);
+    });
+    mediaElement.play();
+}
     
 function playBuffer(){
     sourceBuffer.start();
